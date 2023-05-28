@@ -45,6 +45,8 @@ $ docker container run diamol/ch02-hello-diamol
 
 <img src="./img/2.png" height="45%" width="45%"/>
 
+---
+
 ## 2.2 컨테이너란 무엇인가?
 
 애플리케이션이 들어 있는 어떤 상자를 상상해 보자. 이 상자안에는 애플리케이션과 애플리케이션을 실행할 컴퓨터가 함께 들어있다.
@@ -94,6 +96,8 @@ $ docker container run diamol/ch02-hello-diamol
 
 컨테이너는 `밀집` 과 `격리` 를 동시에 달성한다.
 
+---
+
 ## 2.3 컨테이너를 원격 컴퓨터처럼 사용하기
 
 ```
@@ -118,7 +122,7 @@ $ docker container ls
 
 도커는 컨테이너를 실행할 때마다 무작위로 생성한 ID 값을 부여한다. 그리고 이 ID 값 중 일부분이 호스트명이 된다.
 
-<img src="./img/7.png" height="55%" width="55%"/>
+<img src="./img/7.png" height="65%" width="65%"/>
 
 ---
 
@@ -148,6 +152,8 @@ $ docker container inspect
 ```
 
 컨테이너의 가상 파일 시스템의 경로, 컨테이너에서 실행 중인 명령, 해당 컨테이너가 접속된 가상 도커 네트워크 정보 등 애플리케이션에 발생한 문제를 추적하는 데 유용한 정보가 제공된다.
+
+---
 
 ## 2.4 컨테이너를 사용해 웹 사이트 호스팅하기
 
@@ -187,6 +193,8 @@ $ docker container run --detach --publish 8088:80 diamol/ch02-hello-diamol-web
 ### 실습 결과
 
 <img src="./img/9.png" height="35%" width="35%"/>
+
+</br>
 
 📌 실행 중인 컨테이너의 상태를 확인한다.
 
@@ -237,6 +245,8 @@ Docker 명령을 사용할 때 실제로 도커 API를 호출하는 것이 바�
 ```
 
 도커 엔진은 containerd라는 컴포넌트를 통해 컨테이너를 실제로 관리하는데, containerd는 호스트 운영체제가 제공하는 기능을 통해 컨테이너, 즉 가상 환경을 만든다. 
+
+---
 
 ## 2.6 연습 문제 : 컨테이너 파일 시스템 다루기
 
