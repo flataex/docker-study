@@ -270,10 +270,10 @@ docker container run --mount type=bind,source=$source,target=$target,readonly -d
 
 디렉터리의 파일이 합쳐져 이미지에서 온 파일과 호스트에서 마운트된 파일이 모두 나타납니다.
 
-<aside>
+```
 💡 단 윈도우 컨테이너는 이 기능을 제공하지 않아 동작이 달라집니다.
 
-</aside>
+```
 
 ### 분산 파일 시스템을 사용하는 경우
 
@@ -318,11 +318,11 @@ docker container run --mount type=bind,source=$source,target=$target,readonly -d
 ### 기록 가능 레이어
 
 비용이 비싼 계산이나 네트워크를 통해 저장해야 하는 데이터의 캐싱 등 단기 저장에 적합합니다.
-
-<aside>
+ 
+```
 💡 각 컨테이너마다 독립적인 기록 가능 레이어를 갖지만, 컨테이너가 삭제되면 여기 저장된 데이터는 유실 되는 점을 기억해야 합니다.
 
-</aside>
+```
 
 ### 로컬 바인드 마운트
 
