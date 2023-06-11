@@ -1,0 +1,35 @@
+version: '3.7'
+
+services:
+  todo-web:
+    image: diamol/ch06-todo-list
+    restart: always
+    ports:
+      - "80:80"
+    environment:
+      - Database:Provider=Postgres
+    depends_on:
+      - todo-db
+    networks:
+      - app-net
+    secrets:
+      - source: postgres-connection
+        target: /app/config/secrets.json
+  todo-db:
+    image: diamol/postgres:11.5
+    restart: always
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    networks:
+      - app-net
+
+networks:
+  app-net:
+    external:
+      name: nat
+
+secrets:
+  postgres-connection:
+    file: postgres-connection.json
