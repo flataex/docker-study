@@ -1,0 +1,19 @@
+version: "3.7"
+
+services:
+  todo-app:
+    image: diamol/ch09-todo-list
+    ports:
+      - "80:80"
+
+  prometheus:
+    image: zxcv9203/prometheus
+    ports:
+      - "9090:9090"
+
+  grafana:
+    image: zxcv9203/grafana
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prometheus
