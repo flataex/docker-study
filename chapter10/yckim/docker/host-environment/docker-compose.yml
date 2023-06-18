@@ -1,0 +1,5 @@
+version: "3.7"
+services:
+  todo-web:
+    ports:
+      - "${TODO_WEB_PORT}:80"
