@@ -1,0 +1,17 @@
+version: "3.7"
+
+services:
+  web:
+    image: diamol/ch06-todo-list:v2
+    ports:
+      - 8089:80
+    environment:
+      - Database:Provider=Sqlite
+
+networks:
+  app-net:
+    name: todo-dev
+
+secrets:
+  todo-db-connection:
+    file: dev-secrets.json
