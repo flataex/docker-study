@@ -1,0 +1,47 @@
+services:
+  accesslog:
+    image: diamol/ch09-access-log
+    networks:
+      app-net: null
+  image-gallery:
+    image: diamol/ch09-image-gallery
+    networks:
+      app-net: null
+    ports:
+      - mode: ingress
+        target: 80
+        published: 80
+        protocol: tcp
+  iotd:
+    deploy:
+      replicas: 4
+      update_config:
+        parallelism: 2
+        failure_action: rollback
+        monitor: 1m30s
+        order: start-first
+      rollback_config:
+        parallelism: 4
+        failure_action: continue
+        order: start-first
+    healthcheck:
+      test:
+        - CMD
+        - curl
+        - -f
+        - http://localhost/image
+      timeout: 20s
+      interval: 5s
+      retries: 2
+      start_period: 10s
+    image: diamol/ch09-image-of-the-day
+    networks:
+      app-net: null
+    ports:
+      - mode: ingress
+        target: 80
+        published: 8088
+        protocol: tcp
+networks:
+  app-net:
+    name: image-gallery-prod
