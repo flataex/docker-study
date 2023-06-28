@@ -1,0 +1,55 @@
+networks:
+  app-net:
+    name: numbers-prod
+services:
+  numbers-api:
+    deploy:
+      replicas: 6
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 75M
+      update_config:
+        failure_action: rollback
+        monitor: 60s
+        order: start-first
+        parallelism: 3
+    healthcheck:
+      interval: 2s
+      retries: 2
+      start_period: 5s
+      test:
+      - CMD
+      - dotnet
+      - Utilities.HttpCheck.dll
+      - -u
+      - http://localhost/health
+      - -t
+      - '500'
+      timeout: 3s
+    image: diamol/ch14-numbers-api:v5
+    networks:
+      app-net: {}
+  numbers-web:
+    deploy:
+      mode: global
+      resources:
+        limits:
+          cpus: '0.75'
+          memory: 150M
+    environment:
+      RngApi__Url: http://numbers-api/rng
+    healthcheck:
+      interval: 20s
+      retries: 3
+      start_period: 30s
+      timeout: 10s
+    image: diamol/ch14-numbers-web:v5
+    networks:
+      app-net: {}
+    ports:
+    - mode: host
+      published: 80
+      target: 80
+version: '3.7'
+
