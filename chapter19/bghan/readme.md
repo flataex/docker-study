@@ -72,6 +72,6 @@ docker container run -d --name timecheck2 --log-opt max-size=5k --log-opt max-fi
 - 필터링된 로그 &rarr; stdout
 - 나머지 로그 &rarr; elasticsearch
 
-## 19.5 컨테이너의 로깅 모델
+## 19리.5 컨테이너의 로깅 모델
 
 <img src="./img/8.png" alt="" width="500" />
